@@ -1,4 +1,4 @@
-export const config = {
+ export const config = {
   apiUrl: process.env.NEXT_PUBLIC_API_URL,
   oauth2: {
     clientId: process.env.NEXT_PUBLIC_CLIENT_ID || "",
