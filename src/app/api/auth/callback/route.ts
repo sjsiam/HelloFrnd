@@ -26,11 +26,18 @@ export async function GET(req: NextRequest) {
     const redirectTo = `${req.nextUrl.origin}${state}`;
 
     const response = NextResponse.redirect(redirectTo);
-    response.cookies.set("access_token", tokenRes.data.access_token, {
-      httpOnly: true,
-      secure: false, // set true in production HTTPS
+    response.cookies.set("auth_token", tokenRes.data.access_token, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production", // set true in production HTTPS
       path: "/",
       sameSite: "lax",
+    });
+
+    response.cookies.set("refresh_token", tokenRes.data.refresh_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // set true in production HTTPS
+      sameSite: 'strict',
+      maxAge: 3600 * 24 * 7,
     });
 
     return response;

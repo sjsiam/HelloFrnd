@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import axios from "axios";
-import {config as authConfig} from "./config";
+import { config as authConfig } from "./config";
 
 const PRIVATE_PATHS = ["/messages", "/anotherprivatepage"];
 
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
   const isPrivate = PRIVATE_PATHS.some((path) => pathname.startsWith(path));
   if (!isPrivate) return NextResponse.next();
 
-  const accessToken = req.cookies.get("access_token")?.value;
+  const accessToken = req.cookies.get("auth_token")?.value;
 
   if (!accessToken) {
     // No token → redirect to OAuth login
@@ -42,11 +42,11 @@ export async function middleware(req: NextRequest) {
         pathname + req.nextUrl.search
       )}`
     );
-    res.cookies.delete("access_token");
+    res.cookies.delete("auth_token");
     return res;
   }
 }
 
 export const config = {
-  matcher: ["/messages/:path*", "/anotherprivatepage/:path*"],
+  matcher: ['/messages/:path*', '/api/messages/:path*', '/api/conversations/:path*', '/api/messages/read'],
 };

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function getUser() {
   const cookieStore = await cookies();
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("auth_token")?.value;
   if (!token) return null;
 
   try {
