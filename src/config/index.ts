@@ -7,7 +7,7 @@
     tokenUrl: process.env.NEXT_PUBLIC_TOKEN_URL || "",
     redirectUri: process.env.NEXT_PUBLIC_REDIRECT_URI || "",
     logoutUrl: process.env.NEXT_PUBLIC_LOGOUT_URL || "",
-    authApiUrl: process.env.FILEION_AUTH_API_URL || "",
+    authApiUrl: process.env.NEXT_PUBLIC_FILEION_AUTH_API_URL || "",
   },
   redis: {
     url: process.env.REDIS_URL || "redis://localhost:6379",

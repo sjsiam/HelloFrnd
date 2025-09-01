@@ -1,5 +1,5 @@
-import LeftPanel from "../components/home/LeftPanel";
-import RightPanel from "../components/home/RightPanel";
+import Link from "next/link";
+
 
 export default function Home() {
 
@@ -8,8 +8,11 @@ export default function Home() {
       <div className="flex overflow-y-hidden h-[calc(100vh-50px)] max-w-[1700px] mx-auto bg-left-panel">
         {/* Green background decorator for Light Mode */}
         <div className="fixed top-0 left-0 w-full h-36 bg-green-primary dark:bg-transparent -z-30" />
-        <LeftPanel />
-        <RightPanel />
+        <Link href="/messages" className="m-auto">
+          <button className="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition">
+            Messages
+          </button>
+        </Link>
       </div>
     </main>
   );

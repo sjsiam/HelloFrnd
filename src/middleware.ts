@@ -28,7 +28,7 @@ export async function middleware(req: NextRequest) {
   }
 
   try {
-    await axios.get(`${process.env.FILEION_AUTH_API_URL}/user`, {
+    await axios.get(`${process.env.NEXT_PUBLIC_FILEION_AUTH_API_URL}/user`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     return NextResponse.next();
